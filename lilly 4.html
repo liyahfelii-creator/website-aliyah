@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+    <head>
+        <title>felixuu</title>
+        <link rel="stylesheet"  href="style.css">
+    </head>
+     <body>
+        <aside>
+            <!-- menu samping-->
+             <h2><br></h2>
+             <nav>
+                <center>
+                <a href="index.html">home</a>
+                <br>
+                <br>
+                <br>
+                <a href="lilly dua.html">about</a>
+                <br>
+                <br>
+                <br>
+                <a href="lilly 3.html">gallery</a>
+                <br>
+                <br>
+                <br>
+                <a href="lilly 4.html">contact</a>
+                </center>
+             </nav>
+        </aside>
+         <header>
+            <p class="headerr">lilly</p>
+        </header>
+        <main align="center">
+         <h1>you can contact me</h1>
+
+        <div class="about-content">
+
+             <img src="wowo.jpeg" class="foto" alt="my photo">
+             <div class="about-text">
+             <h2>here</h2>
+             <p>
+📧 Email: Aliyahbahirah8.gmail.com
+<br>
+📱 Instagram: @llyh_ayaa
+<br>
+💬 WhatsAp: 081245758394
+<br>
+📍 Kota/domisi: Makassar </P>
+     </div>
+</div>
+     <br>
+      <form id="myform">
+
+    <p class="word">leave me a word</p>
+
+    <p>Nama</p>
+    <input type="text" name="nama" required>
+
+    <p>Email</p>
+    <input type="email" name="email" required>
+
+    <p>Message</p>
+    <textarea name="message"></textarea>
+
+    <br><br>
+
+    <p>How do you like my website?</p>
+
+    <button type="button" onclick="chooseReaction('Like 👍')">
+        👍 Like
+    </button>
+
+    <button type="button" onclick="chooseReaction('Dislike 👎')">
+        👎 Dislike
+    </button>
+
+    <p id="reactionText"></p>
+
+    <input type="hidden" name="reaction" id="reaction">
+
+    <br>
+
+    <button type="submit">Kirim</button>
+
+</form>
+
+<script>
+const form = document.getElementById("myform");
+
+const url = "https://script.google.com/macros/s/AKfycbwEOhyoV75urBKFTM22Tn4H3Bgr78fo9HUll7p8ZqAxkug62g8UonLkgOTrRozy0KRs/exec";
+
+function chooseReaction(reaction) {
+    document.getElementById("reaction").value = reaction;
+    document.getElementById("reactionText").innerText =
+        "Kamu memilih: " + reaction;
+}
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch(url, {
+        method: "POST",
+        body: data,
+        mode: "no-cors"
+    });
+
+    alert("Pesan berhasil dikirim! 💌");
+    form.reset();
+    document.getElementById("reactionText").innerText = "";
+});
+</script>
