@@ -169,8 +169,8 @@ animation: bebi 1s;
     }
 
     .about-content {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row;
+        gap: 15px;
     }
 
     .about-text {
@@ -187,3 +187,13 @@ animation: bebi 1s;
         justify-content: center;
     }
 }
+
+.content-box {
+    background-color: blue;
+    padding: 25px;
+    border-radius:15px;
+    max-widht: 800px;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba (0,0,0,0.1);
+    line-height: 1.7;
+    
