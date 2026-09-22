@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <tittle>
+    felixuuu
+  <nav>
+    pelajaran
+  </nav>
+  </tittle>
+</head>
+<main>
+<body align="center" bgcolor="red" text="white">
+<font size=550 face=impact>
+ <h1>Halo kandaku</h1>
+</font>
+ <h2>apa kabar? </h2>
+ <p>Yang punya ceweknya felix</p>
+ <p>rill seratus persen</p>
+ <br>
+ <img src="felixxu.jpg"
+ alt="gambar">
+ <br>
+ <br>
+ <br>
+ <br>
+<from>
+<p>
+nama:
+<input type="text">
+
+email:
+<input type="text">
+
+pasword:
+<input type="text">
+
+<button>Kirim</buton>
+</p>
+</body>
+</main>
+
+<footer>
+  coyright aliyah 
+</footer>
+
+</html>
