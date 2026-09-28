@@ -231,13 +231,7 @@ animation: bebi 1s;
         line-height: 1.5;
     }
 
-    @media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-
     img {
         max-width: 100%;
         height: auto;
     }
-}
