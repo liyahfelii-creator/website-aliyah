@@ -98,6 +98,21 @@ animation: bebi 1s;
     }
 }
 
+.animati {
+animation: bebi 1s;
+}
+
+@keyframes bebi {
+    from {
+        opacity: 0;
+        transform: 
+    translateX(-250px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
 .about-content {
     display: flex;
     align-items: center;
@@ -185,5 +200,44 @@ animation: bebi 1s;
 
     .music-links {
         justify-content: center;
+    }
+}
+
+    .leke {
+        background-color: pink;
+        padding: 10 px;
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
+    }
+
+    .yongbok {
+       background-color: rgb(192, 227, 255);
+        padding: 20px 30px;
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 10px;
+        border-radius: 10px;
+        line-height: 1.5;
+    }
+
+    .ambasador {
+        background-color: rgb(192, 227, 255);
+        padding: 20px 30px;
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 10px;
+        border-radius: 10px;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
