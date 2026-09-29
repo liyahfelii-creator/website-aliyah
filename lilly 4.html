@@ -87,48 +87,34 @@
 const form = document.getElementById("myform");
 
 const url = "https://script.google.com/macros/s/AKfycbwEOhyoV75urBKFTM22Tn4H3Bgr78fo9HUll7p8ZqAxkug62g8UonLkgOTrRozy0KRs/exec";
+const supabaseUrl = "https://wpjvkuaxockmuyccgqu.supabase.co";
+const supabaseKey = "sb_publishable_bzernbtU4yV_xWswaXeU7A_EL2tl79U";
+
+let selectedReaction = "";
 
 function chooseReaction(reaction) {
+    selectedReaction = reaction;
     document.getElementById("reaction").value = reaction;
     document.getElementById("reactionText").innerText =
         "Kamu memilih: " + reaction;
 }
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const data = new FormData(form);
 
+    // GOOGLE SHEETS
     fetch(url, {
         method: "POST",
         body: data,
         mode: "no-cors"
     });
 
-    alert("Pesan berhasil dikirim! 💌");
-    form.reset();
-    document.getElementById("reactionText").innerText = "";
-});
-// SUPABASE
-const supabaseUrl = "https://wpjvkduaxockmuyccgqu.supabase.co/rest/v1/";
-const supabaseKey = "sb_publishable_bzernbtU4yV_xWswaXeU7A_EL2tl79U";
-
-// Simpan reaction ke Supabase
-async function chooseReaction(reaction) {
-    document.getElementById("reaction").value = reaction;
-    document.getElementById("reactionText").innerText =
-        "Kamu memilih: " + reaction;
-
-    saveReaction(reaction);
-}
-
-async function saveReaction(reaction) {
-    const name = document.querySelector('input[name="name"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const message = document.querySelector('textarea[name="message"]').value;
-
-    try {
-        const response = await fetch(supabaseUrl + "/rest/v1/like", {
+    // SUPABASE
+    const response = await fetch(
+        supabaseUrl + "/rest/v1/like",
+        {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -136,21 +122,22 @@ async function saveReaction(reaction) {
                 "Authorization": "Bearer " + supabaseKey
             },
             body: JSON.stringify({
-                name: name,
-                email: email,
-                message: message,
-                reaction: reaction
+                name: document.querySelector('[name="name"]').value,
+                email: document.querySelector('[name="email"]').value,
+                message: document.querySelector('[name="message"]').value,
+                reaction: selectedReaction
             })
-        });
-
-        if (response.ok) {
-            console.log("Semua data berhasil disimpan!");
-        } else {
-            console.log("Gagal menyimpan:", await response.text());
         }
+    );
 
-    } catch (error) {
-        console.log("Error:", error);
+    if (response.ok) {
+        alert("Pesan berhasil dikirim! ❤️");
+        form.reset();
+        selectedReaction = "";
+        document.getElementById("reactionText").innerText = "";
+    } else {
+        console.log(await response.text());
+        alert("Gagal menyimpan ke database 😭");
     }
-}
+});
 </script>
