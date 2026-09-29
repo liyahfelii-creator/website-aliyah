@@ -109,4 +109,48 @@ form.addEventListener("submit", function(event) {
     form.reset();
     document.getElementById("reactionText").innerText = "";
 });
+// SUPABASE
+const supabaseUrl = "https://wpjvkduaxockmuyccgqu.supabase.co/rest/v1/";
+const supabaseKey = "sb_publishable_bzernbtU4yV_xWswaXeU7A_EL2tl79U";
+
+// Simpan reaction ke Supabase
+async function chooseReaction(reaction) {
+    document.getElementById("reaction").value = reaction;
+    document.getElementById("reactionText").innerText =
+        "Kamu memilih: " + reaction;
+
+    saveReaction(reaction);
+}
+
+async function saveReaction(reaction) {
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
+
+    try {
+        const response = await fetch(supabaseUrl + "/rest/v1/like", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": supabaseKey,
+                "Authorization": "Bearer " + supabaseKey
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                message: message,
+                reaction: reaction
+            })
+        });
+
+        if (response.ok) {
+            console.log("Semua data berhasil disimpan!");
+        } else {
+            console.log("Gagal menyimpan:", await response.text());
+        }
+
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
 </script>
