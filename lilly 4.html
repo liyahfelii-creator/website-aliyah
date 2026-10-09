@@ -49,27 +49,25 @@
 </div>
      <br>
       <form id="myform">
+        <p class="word">leave me a word</p>
+        <div class="leke"
+        <p>Nama</p>
+        <input class="formzzz" id="name" type="text" name="nama" required placeholder="Masukkan nama kamu">
 
-    <p class="word">leave me a word</p>
-    <div class="leke"
-    <p>Nama</p>
-    <input type="text" name="nama" required>
-
-    <p>Email</p>
-    <input type="email" name="email" required>
-
-    <p>Message</p>
-    <textarea name="message"></textarea>
+        <p>Email</p>
+        <input class="formzzz" id="email" type="email" name="email" required placeholder="Masukkan email kamu">
+        <p>Message</p>
+        <textarea class="formzzz" id="message" name="message" placeholder="Tulis pesan kamu di sini..."></textarea>
 
     <br><br>
 
     <p>How do you like my website?</p>
 
-    <button type="button" onclick="chooseReaction('Like 👍')">
+    <button type="button" class="choice" data-value="like">
         👍 Like
     </button>
 
-    <button type="button" onclick="chooseReaction('Dislike 👎')">
+    <button type="button" class="choice" data-value="dislike">
         👎 Dislike
     </button>
 
@@ -79,78 +77,84 @@
 
     <br>
 
-    <button type="submit">Kirim</button>
-</div>
+    <button id="upload" type="submit">Kirim</button>
 </form>
+</div>
+<div id="comments-section"></div>
 
 <script>
-const form = document.getElementById("myform");
+// const form = document.getElementById("myform");
 
-const url = "https://script.google.com/macros/s/AKfycbwEOhyoV75urBKFTM22Tn4H3Bgr78fo9HUll7p8ZqAxkug62g8UonLkgOTrRozy0KRs/exec";
+// const url = "https://script.google.com/macros/s/AKfycbwEOhyoV75urBKFTM22Tn4H3Bgr78fo9HUll7p8ZqAxkug62g8UonLkgOTrRozy0KRs/exec";
 
-function chooseReaction(reaction) {
-    document.getElementById("reaction").value = reaction;
-    document.getElementById("reactionText").innerText =
-        "Kamu memilih: " + reaction;
-}
+// function chooseReaction(reaction) {
+//     document.getElementById("reaction").value = reaction;
+//     document.getElementById("reactionText").innerText =
+//         "Kamu memilih: " + reaction;
+// }
 
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
+// form.addEventListener("submit", function(event) {
+//     event.preventDefault();
 
-    const data = new FormData(form);
+//     const data = new FormData(form);
 
-    fetch(url, {
-        method: "POST",
-        body: data,
-        mode: "no-cors"
-    });
+//     fetch(url, {
+//         method: "POST",
+//         body: data,
+//         mode: "no-cors"
+//     });
 
-    alert("Pesan berhasil dikirim! 💌");
-    form.reset();
-    document.getElementById("reactionText").innerText = "";
-});
-// SUPABASE
-const supabaseUrl = "https://wpjvkduaxockmuyccgqu.supabase.co";
-const supabaseKey = "sb_publishable_bzernbtU4yV_xWswaXeU7A_EL2tl79U";
+//     alert("Pesan berhasil dikirim! 💌");
+//     form.reset();
+//     document.getElementById("reactionText").innerText = "";
+// });
+// // SUPABASE
+// const supabaseUrl = "https://wpjvkduaxockmuyccgqu.supabase.co";
+// const supabaseKey = "sb_publishable_bzernbtU4yV_xWswaXeU7A_EL2tl79U";
 
-// Simpan reaction ke Supabase
-async function chooseReaction(reaction) {
-    document.getElementById("reaction").value = reaction;
-    document.getElementById("reactionText").innerText =
-        "Kamu memilih: " + reaction;
+// // Simpan reaction ke Supabase
+// async function chooseReaction(reaction) {
+//     document.getElementById("reaction").value = reaction;
+//     document.getElementById("reactionText").innerText =
+//         "Kamu memilih: " + reaction;
 
-    saveReaction(reaction);
-}
+//     saveReaction(reaction);
+// }
 
-async function saveReaction(reaction) {
-    const name = document.querySelector('input[name="name"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const message = document.querySelector('textarea[name="message"]').value;
+// async function saveReaction(reaction) {
+//     const name = document.querySelector('input[name="name"]').value;
+//     const email = document.querySelector('input[name="email"]').value;
+//     const message = document.querySelector('textarea[name="message"]').value;
 
-    try {
-        const response = await fetch(supabaseUrl + "/rest/v1/like", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "apikey": supabaseKey,
-                "Authorization": "Bearer " + supabaseKey
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                message: message,
-                reaction: reaction
-            })
-        });
+//     try {
+//         const response = await fetch(supabaseUrl + "/rest/v1/like", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "apikey": supabaseKey,
+//                 "Authorization": "Bearer " + supabaseKey
+//             },
+//             body: JSON.stringify({
+//                 name: name,
+//                 email: email,
+//                 message: message,
+//                 reaction: reaction
+//             })
+//         });
 
-        if (response.ok) {
-            console.log("Semua data berhasil disimpan!");
-        } else {
-            console.log("Gagal menyimpan:", await response.text());
-        }
+//         if (response.ok) {
+//             console.log("Semua data berhasil disimpan!");
+//         } else {
+//             console.log("Gagal menyimpan:", await response.text());
+//         }
 
-    } catch (error) {
-        console.log("Error:", error);
-    }
-}
+//     } catch (error) {
+//         console.log("Error:", error);
+//     }
+// }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="comments.js"></script>
+</main>
+</body>
+</html>
